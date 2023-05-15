@@ -25,4 +25,26 @@ const companies = [
     },
     // ... (more companies)
   ];
-  
+  const processedCompanies = processCompanies(companies);
+console.log(processedCompanies);
+
+function processCompanies(companies) {
+  return companies.map((company) => {
+    const numEmployees = company.employees.length;
+    const departments = {};
+
+    company.employees.forEach((employee) => {
+      if (departments[employee.department]) {
+        departments[employee.department]++;
+      } else {
+        departments[employee.department] = 1;
+      }
+    });
+
+    return {
+      ...company,
+      numEmployees,
+      departments,
+    };
+  });
+}
