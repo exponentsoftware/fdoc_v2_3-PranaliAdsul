@@ -58,3 +58,29 @@ function findOverdueTasks(projects, specifiedDate) {
   const overdueTasks = findOverdueTasks(projects, specifiedDate);
   console.log(overdueTasks);
   
+  // Assigns a task with a specified title to an employee with a given name,
+//  only if the employee and task exist
+
+function assignTaskToEmployee(projects, taskTitle, employeeName) {
+    let taskFound = false;
+  
+    projects.forEach((project) => {
+      project.tasks.forEach((task) => {
+        if (task.title === taskTitle) {
+          task.assignee = employeeName;
+          taskFound = true;
+          console.log(
+            `Task "${taskTitle}" assigned to employee "${employeeName}" in project "${project.name}".`
+          );
+        }
+      });
+    });
+  
+    if (!taskFound) {
+      console.log(`Task "${taskTitle}" not found in any project.`);
+    }
+  }
+  
+  assignTaskToEmployee(projects, "Continuous Improvement Programs and Lean Manufacturing", "Bob");
+  assignTaskToEmployee(projects, "Event Planning and Coordination", "John");
+  
